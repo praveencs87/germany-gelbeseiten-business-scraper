@@ -1,0 +1,36 @@
+{
+    "title": "Germany GelbeSeiten Scraper Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "keyword": {
+            "title": "Search Query (Suchbegriff)",
+            "type": "string",
+            "description": "The specific business category or name (e.g., 'IT-Beratung', 'Maschinenbau', 'Rechtsanwalt').",
+            "editor": "textfield",
+            "prefill": "IT-Beratung"
+        },
+        "location": {
+            "title": "Location (Ort)",
+            "type": "string",
+            "description": "City or Zip Code in Germany (e.g., 'Berlin', 'München', 'Hamburg', '80331').",
+            "editor": "textfield",
+            "prefill": "Berlin"
+        },
+        "maxLeads": {
+            "title": "Maximum Leads",
+            "type": "integer",
+            "description": "Maximum number of German business leads to extract.",
+            "default": 100,
+            "minimum": 1
+        },
+        "proxyConfiguration": {
+            "title": "Proxy Configuration",
+            "type": "object",
+            "description": "Proxy settings. Apify Residential Proxy (Germany targeted) is highly required.",
+            "prefill": { "useApifyProxy": true },
+            "editor": "proxy"
+        }
+    },
+    "required": ["keyword", "location"]
+}

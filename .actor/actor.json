@@ -1,0 +1,37 @@
+{
+    "actorSpecification": 1,
+    "name": "germany-gelbeseiten-business-scraper",
+    "title": "Germany GelbeSeiten Scraper | B2B Leads",
+    "description": "Extract verified German businesses, manufacturers, and local services from GelbeSeiten. Premium EU B2B leads.",
+    "version": "1.0",
+    "input": "./input_schema.json",
+    "dockerfile": "./Dockerfile",
+    "minMemoryMbytes": 1024,
+    "maxMemoryMbytes": 4096,
+    "pricingModel": "PAY_PER_EVENT",
+    "pricingEvents": [
+        {
+            "eventName": "apify-actor-start",
+            "pricePerEvent": 0.25,
+            "description": "Base fee for starting the crawler (Playwright overhead)"
+        },
+        {
+            "eventName": "lead-extracted",
+            "pricePerEvent": 0.0040,
+            "description": "Charged per German Business lead successfully extracted ($4.00 per 1k leads)"
+        }
+    ],
+    "isPublic": true,
+    "seoTitle": "GelbeSeiten Scraper | Germany Business Directory Extractor",
+    "seoDescription": "Scrape verified German businesses, manufacturers, IT services, and B2B leads from GelbeSeiten.de. High-quality DACH region data extraction.",
+    "categories": [
+        "LEAD_GENERATION",
+        "BUSINESS",
+        "REAL_ESTATE"
+    ],
+    "defaultRunOptions": {
+        "build": "latest",
+        "timeoutSecs": 3600,
+        "memoryMbytes": 1024
+    }
+}
