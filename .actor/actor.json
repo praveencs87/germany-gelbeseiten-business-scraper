@@ -1,8 +1,8 @@
 {
     "actorSpecification": 1,
     "name": "germany-gelbeseiten-business-scraper",
-    "title": "Germany GelbeSeiten Scraper | B2B Leads",
-    "description": "Extract verified German businesses, manufacturers, and local services from GelbeSeiten. Premium EU B2B leads.",
+    "title": "Germany Business Scraper | B2B Leads",
+    "description": "Extract verified German businesses and tradesmen from DasOertliche.de. Premium B2B leads.",
     "version": "1.0",
     "input": "./input_schema.json",
     "dockerfile": "./Dockerfile",
@@ -22,8 +22,8 @@
         }
     ],
     "isPublic": true,
-    "seoTitle": "GelbeSeiten Scraper | Germany Business Directory Extractor",
-    "seoDescription": "Scrape verified German businesses, manufacturers, IT services, and B2B leads from GelbeSeiten.de. High-quality DACH region data extraction.",
+    "seoTitle": "DasOertliche.de Scraper | Germany Business Directory Extractor",
+    "seoDescription": "Scrape verified German businesses, tradesmen, and B2B leads from DasOertliche.de. High-quality DACH region data extraction.",
     "categories": [
         "LEAD_GENERATION",
         "BUSINESS",

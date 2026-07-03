@@ -6,7 +6,7 @@ await Actor.init();
 try {
     const input = await Actor.getInput();
     const { 
-        keyword = 'IT-Beratung', 
+        keyword = 'Klempner', 
         location = 'Berlin', 
         maxLeads = 100,
         proxyConfiguration 
@@ -18,11 +18,12 @@ try {
         apifyProxyCountry: 'DE'
     });
 
-    log.info(`Searching GelbeSeiten (Germany) for "${keyword}" in "${location}"`);
+    log.info(`Searching Das Oertliche (Germany) for "${keyword}" in "${location}"`);
     
     await Actor.charge({ eventName: 'apify-actor-start', count: 1 });
 
     let extractedCount = 0;
+    let isSearchSubmitted = false;
 
     const crawler = new PlaywrightCrawler({
         proxyConfiguration: proxyConfig,
@@ -32,40 +33,55 @@ try {
             useFingerprints: true,
         },
         async requestHandler({ page, request, log, enqueueLinks }) {
-            log.info(`Parsing directory page: ${request.url}`);
+            log.info(`Parsing page: ${request.url}`);
             
-            // Accept cookies if presented
-            await page.locator('button:has-text("Akzeptieren"), button:has-text("Zustimmen"), #cmpbntyestxt').click({ timeout: 5000 }).catch(() => {});
-            
-            await page.waitForSelector('article, .mod-Treffer, .listing_box, .gs_treffer', { timeout: 30000 }).catch(() => log.warning('Timeout waiting for DOM.'));
-
             const title = await page.title();
             if (title.includes('Just a moment') || title.includes('Access Denied') || title.includes('Attention Required')) {
                 throw new Error('Blocked by WAF. Retrying with residential proxy...');
             }
 
-            // Scroll down to trigger lazy loading
+            if (request.url === 'https://www.dasoertliche.de/' && !isSearchSubmitted) {
+                log.info('Filling out the search form on dasoertliche.de homepage...');
+                // Accept cookies if present
+                await page.click('#cmpbntyestxt, .cmpboxbtn.cmpboxbtnyes').catch(() => {});
+
+                await page.waitForSelector('input[name="kw"], #kw', { timeout: 30000 });
+                await page.fill('input[name="kw"], #kw', keyword);
+                await page.fill('input[name="ci"], #ci', location);
+                
+                await Promise.all([
+                    page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 60000 }),
+                    page.click('button[type="submit"], input[type="submit"], .btn-search')
+                ]).catch(() => log.warning('Navigation wait timed out, continuing...'));
+                
+                log.info(`Redirected to search results: ${page.url()}`);
+                isSearchSubmitted = true;
+            }
+
+            // Results page parsing
+            await page.waitForSelector('.hit, .hitbox, .resultbox, .result-item, .box', { timeout: 30000 }).catch(() => log.warning('Timeout waiting for DOM.'));
+            
             await page.evaluate(() => window.scrollBy(0, window.innerHeight * 2));
             await page.waitForTimeout(2000);
 
-            const items = await page.$$('article, .mod-Treffer, .gs_treffer');
+            const items = await page.$$('.hit, .hitbox, .resultbox, .result-item, .box');
             
             for (const item of items) {
                 if (extractedCount >= maxLeads) break;
 
-                const nameElement = await item.$('h2, .mod-Treffer__name, .name, [data-wipe-name="Titel"]');
+                const nameElement = await item.$('h2, .name, .title, a.hit-name');
                 if (!nameElement) continue;
                 const businessName = (await nameElement.innerText()).trim();
 
-                const addressElement = await item.$('.mod-Treffer__anschrift, address, .anschrift, [data-wipe-name="Adresse"]');
+                const addressElement = await item.$('.address, .hit-adr, address, .contact-left');
                 const address = addressElement ? (await addressElement.innerText()).trim().replace(/\s+/g, ' ') : '';
 
                 // Category
-                const catElement = await item.$('.mod-Treffer__branche, .branche, [data-wipe-name="Branche"]');
+                const catElement = await item.$('.category, .hit-category, .branchen');
                 const industry = catElement ? (await catElement.innerText()).trim() : keyword;
 
                 // Phones
-                const phoneElement = await item.$('a[href^="tel:"], .mod-Treffer__telefon, [data-wipe-name="Telefon"]');
+                const phoneElement = await item.$('a[href^="tel:"], .phone, .hit-tel, .tel');
                 let phone = '';
                 if (phoneElement) {
                     const href = await phoneElement.getAttribute('href');
@@ -77,13 +93,13 @@ try {
                 }
                 
                 // Website
-                const websiteElement = await item.$('.mod-Treffer__website, a[data-wipe-name="Webseite"], a.contains-icon-website');
+                const websiteElement = await item.$('.website a, a.website-link, a[href^="http"]:not([href*="dasoertliche"])');
                 const website = websiteElement ? await websiteElement.getAttribute('href') : '';
                 
                 // URL
-                const urlElement = await item.$('h2 a, .mod-Treffer__name, a[data-wipe-name="Titel"]');
+                const urlElement = await item.$('h2 a, .name a, a.hit-name');
                 const listingUrl = urlElement ? await urlElement.getAttribute('href') : '';
-                const fullListingUrl = listingUrl && !listingUrl.startsWith('http') ? new URL(listingUrl, 'https://www.gelbeseiten.de').toString() : listingUrl;
+                const fullListingUrl = listingUrl && !listingUrl.startsWith('http') ? new URL(listingUrl, 'https://www.dasoertliche.de').toString() : listingUrl;
 
                 if (businessName && businessName.length > 1) {
                     const record = {
@@ -92,7 +108,7 @@ try {
                         address,
                         phone,
                         website,
-                        listingUrl: fullListingUrl || request.url,
+                        listingUrl: fullListingUrl || page.url(),
                         scrapedAt: new Date().toISOString()
                     };
 
@@ -105,11 +121,11 @@ try {
 
             // Pagination
             if (extractedCount < maxLeads) {
-                const hasNextPage = await page.$('.mod-Paginierung__next, a.next, a:has-text("Nächste")');
+                const hasNextPage = await page.$('.pagination a.next, a[rel="next"], .next-page, a.bln_next');
                 if (hasNextPage) {
                     const nextUrl = await hasNextPage.getAttribute('href');
                     if (nextUrl) {
-                        const absoluteUrl = new URL(nextUrl, 'https://www.gelbeseiten.de').toString();
+                        const absoluteUrl = new URL(nextUrl, 'https://www.dasoertliche.de').toString();
                         log.info(`Enqueuing next page: ${absoluteUrl}`);
                         await enqueueLinks({
                             urls: [absoluteUrl],
@@ -123,13 +139,8 @@ try {
         }
     });
 
-    const formatKeyword = encodeURIComponent(keyword);
-    const formatLocation = encodeURIComponent(location);
-    // Standard GelbeSeiten Search URL
-    const startUrl = `https://www.gelbeseiten.de/Suche/${formatKeyword}/${formatLocation}`;
-    
     await crawler.addRequests([{
-        url: startUrl
+        url: 'https://www.dasoertliche.de/'
     }]);
 
     await crawler.run();

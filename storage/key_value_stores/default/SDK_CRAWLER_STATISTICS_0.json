@@ -1,0 +1,51 @@
+{
+  "requestsFinished": 1,
+  "requestsFailed": 0,
+  "requestsRetries": 1,
+  "requestsFailedPerMinute": 0,
+  "requestsFinishedPerMinute": 1,
+  "requestMinDurationMillis": 17321,
+  "requestMaxDurationMillis": 17321,
+  "requestTotalFailedDurationMillis": 0,
+  "requestTotalFinishedDurationMillis": 17321,
+  "crawlerStartedAt": "2026-07-03T02:35:19.086Z",
+  "crawlerFinishedAt": "2026-07-03T02:37:01.682Z",
+  "statsPersistedAt": "2026-07-03T02:37:01.682Z",
+  "crawlerRuntimeMillis": 102733,
+  "crawlerLastStartTimestamp": 1783046118949,
+  "requestRetryHistogram": [
+    null,
+    null,
+    null,
+    1
+  ],
+  "statsId": 0,
+  "requestAvgFailedDurationMillis": null,
+  "requestAvgFinishedDurationMillis": 17321,
+  "requestTotalDurationMillis": 17321,
+  "requestsTotal": 1,
+  "requestsWithStatusCode": {
+    "404": 1
+  },
+  "errors": {},
+  "retryErrors": {
+    "/home/praveen/APIFY/germany-gelbeseiten-business-scraper/node_modules/@crawlee/playwright/internals/utils/playwright-utils.js:165:17": {
+      "missing error code": {
+        "Error": {
+          "page.goto: net::ERR_TIMED_OUT at https://www.gelbeseiten.de/Suche/plumber/Berlin": {
+            "count": 2
+          }
+        }
+      }
+    },
+    "/home/praveen/APIFY/germany-gelbeseiten-business-scraper/node_modules/@crawlee/browser/internals/browser-crawler.js:371:19": {
+      "missing error code": {
+        "Error": {
+          "Detected a session error, rotating session... ": {
+            "count": 1
+          }
+        }
+      }
+    }
+  }
+}

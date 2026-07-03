@@ -1,14 +1,14 @@
-# Germany GelbeSeiten Business Scraper
+# Germany Business Scraper
 
-**Extract verified German businesses, manufacturers, and local services from GelbeSeiten.**
+**Extract verified German businesses, tradesmen, and local services from DasOertliche.de.**
 
-The Germany GelbeSeiten Scraper is an elite data extraction tool for the DACH region. Secure high-value B2B leads, targeting Europe's largest economy with precision.
+The Germany Business Scraper is your gateway to extracting premium B2B data from the German market. Source highly valuable business leads effortlessly.
 
-## What can Germany GelbeSeiten Scraper do?
+## What can Germany Business Scraper do?
 
-- ✅ **Extract EU B2B Leads** - Get business names, physical German addresses, and direct contact numbers.
-- ✅ **Target specific DACH Industries** - Focus your search on IT consulting (IT-Beratung), mechanical engineering (Maschinenbau), legal services, or any other category.
-- ✅ **Identify Local Footprint** - Target major economic centers like Munich, Berlin, Hamburg, or Frankfurt.
+- ✅ **Extract German B2B Leads** - Get business names, physical addresses, and direct contact numbers.
+- ✅ **Target specific Industries** - Focus your search on plumbers, tradesmen, accountants, or local services.
+- ✅ **Identify Local Footprint** - Target major economic hubs like Berlin, Munich, Hamburg, or Frankfurt.
 - ✅ **Export formats** - Download data in JSON, CSV, Excel, or HTML formats.
 - ✅ **Integrations** - Connect seamlessly with API, webhooks, Make, or Zapier.
 - ✅ **No coding required** - Use our simple interface to start scraping immediately.
@@ -30,9 +30,9 @@ Germany is the economic powerhouse of Europe. Sourcing B2B leads from the DACH r
 | **address** | The full DE address | "Friedrichstraße 123, 10117 Berlin" |
 | **phone** | Direct contact number | "+49 30 1234567" |
 | **website** | Company website | "https://www.mueller-it.de" |
-| **listingUrl** | Link to the GelbeSeiten listing | "https://www.gelbeseiten.de/..." |
+| **listingUrl** | Link to the directory listing | "https://www.dasoertliche.de/..." |
 
-## How to scrape GelbeSeiten data
+## How to scrape DasOertliche.de data
 
 1. **Click "Try for free"** to start using the actor.
 2. **Enter your input** - Provide a search term (e.g., "Maschinenbau") and a location/zip code (e.g., "München" or "80331").
@@ -64,7 +64,7 @@ You can download data in multiple formats:
     "address": "Friedrichstraße 123, 10117 Berlin",
     "phone": "+49301234567",
     "website": "https://www.mueller-it.de",
-    "listingUrl": "https://www.gelbeseiten.de/...",
+    "listingUrl": "https://www.dasoertliche.de/...",
     "scrapedAt": "2026-07-02T15:00:00Z"
 }
 ```

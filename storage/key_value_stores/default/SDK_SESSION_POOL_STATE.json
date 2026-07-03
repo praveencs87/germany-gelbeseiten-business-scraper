@@ -1,0 +1,214 @@
+{
+  "usableSessionsCount": 5,
+  "retiredSessionsCount": 1,
+  "sessions": [
+    {
+      "id": "session_V6AeaFsNqh",
+      "cookieJar": {
+        "version": "tough-cookie@6.0.1",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2026-07-03T03:25:19.112Z",
+      "createdAt": "2026-07-03T02:35:19.112Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_mrFxbcMJow",
+      "cookieJar": {
+        "version": "tough-cookie@6.0.1",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2026-07-03T03:25:19.116Z",
+      "createdAt": "2026-07-03T02:35:19.116Z",
+      "usageCount": 5,
+      "maxUsageCount": 50,
+      "errorScore": 9
+    },
+    {
+      "id": "session_YAFUoNU2m3",
+      "cookieJar": {
+        "version": "tough-cookie@6.0.1",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2026-07-03T03:25:49.335Z",
+      "createdAt": "2026-07-03T02:35:49.335Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_3KkauKSVVS",
+      "cookieJar": {
+        "version": "tough-cookie@6.0.1",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2026-07-03T03:26:19.379Z",
+      "createdAt": "2026-07-03T02:36:19.379Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_VqpCPea6h7",
+      "cookieJar": {
+        "version": "tough-cookie@6.0.1",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2026-07-03T03:26:44.318Z",
+      "createdAt": "2026-07-03T02:36:44.318Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_LbRz0u5AsC",
+      "cookieJar": {
+        "version": "tough-cookie@6.0.1",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": [
+          {
+            "key": "__cmpconsentx15760",
+            "value": "CQmws2QQmws2QAfbgBDECmFgAAAAAAAAAAigAAAO2gBgA4ASqA7YAAA.IKRtR9G_fbWFHOTJ3aLskaYQX19hp5kQAAgaAEiAFyBOA4IQG00ASMAyAJCAAABAAoTRBIQBkDAAEAECAAIgFASDsIACAgAAKIAAEACMQQ0AQAAgIAAAgEAAYAMBNIwAAmAqgYZrkQMRAiIAAAgARAAABAIABAAMAGEEYQAAAAAIAQIAAAgIAEAAAAAEAAQAIAAAAAQAAAAAAAAAAAAAAAAAABAAAAI",
+            "expires": "2026-07-17T02:36:55.000Z",
+            "domain": "gelbeseiten.de",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2026-07-03T02:36:56.463Z",
+            "lastAccessed": "2026-07-03T02:36:56.463Z"
+          },
+          {
+            "key": "__cmpcvcx15760",
+            "value": "__s23_c30435_c7888_s462_s261_c23722__",
+            "expires": "2026-07-17T02:36:55.000Z",
+            "domain": "gelbeseiten.de",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2026-07-03T02:36:56.467Z",
+            "lastAccessed": "2026-07-03T02:36:56.467Z"
+          },
+          {
+            "key": "__cmpcpcx15760",
+            "value": "__1__",
+            "expires": "2026-07-17T02:36:55.000Z",
+            "domain": "gelbeseiten.de",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2026-07-03T02:36:56.468Z",
+            "lastAccessed": "2026-07-03T02:36:56.468Z"
+          },
+          {
+            "key": "__cmpcvc",
+            "value": "__s23_c30435_c7888_s462_s261_c23722__",
+            "expires": "2026-07-17T02:36:55.000Z",
+            "domain": "gelbeseiten.de",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2026-07-03T02:36:56.469Z",
+            "lastAccessed": "2026-07-03T02:36:56.469Z"
+          },
+          {
+            "key": "__cmpcpc",
+            "value": "__1__",
+            "expires": "2026-07-17T02:36:55.000Z",
+            "domain": "gelbeseiten.de",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2026-07-03T02:36:56.469Z",
+            "lastAccessed": "2026-07-03T02:36:56.469Z"
+          },
+          {
+            "key": "__cmpiabli",
+            "value": "__597_56_950_",
+            "expires": "2026-07-17T02:36:55.000Z",
+            "domain": "gelbeseiten.de",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2026-07-03T02:36:56.469Z",
+            "lastAccessed": "2026-07-03T02:36:56.469Z"
+          },
+          {
+            "key": "__cmpiabli15760",
+            "value": "__597_56_950_",
+            "expires": "2026-07-17T02:36:55.000Z",
+            "domain": "gelbeseiten.de",
+            "path": "/",
+            "secure": true,
+            "hostOnly": false,
+            "creation": "2026-07-03T02:36:56.469Z",
+            "lastAccessed": "2026-07-03T02:36:56.469Z"
+          },
+          {
+            "key": "utag_main",
+            "value": "v_id:019f25d602c1008ce5cfdf608b6000069002f0610086e$_sn:1$_ss:0$_st:1783048015519$ses_id:1783046210243%3Bexp-session$_pn:1%3Bexp-session",
+            "expires": "2027-07-03T02:36:55.000Z",
+            "domain": "gelbeseiten.de",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2026-07-03T02:36:56.469Z",
+            "lastAccessed": "2026-07-03T02:36:56.469Z"
+          }
+        ]
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2026-07-03T03:26:44.318Z",
+      "createdAt": "2026-07-03T02:36:44.318Z",
+      "usageCount": 1,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    }
+  ]
+}
