@@ -3,19 +3,14 @@
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "keyword": {
-            "title": "Search Query (Suchbegriff)",
-            "type": "string",
-            "description": "The specific business category or name (e.g., 'IT-Beratung', 'Maschinenbau', 'Rechtsanwalt').",
-            "editor": "textfield",
-            "prefill": "IT-Beratung"
-        },
-        "location": {
-            "title": "Location (Ort)",
-            "type": "string",
-            "description": "City or Zip Code in Germany (e.g., 'Berlin', 'München', 'Hamburg', '80331').",
-            "editor": "textfield",
-            "prefill": "Berlin"
+        "startUrls": {
+            "title": "Start URLs",
+            "type": "array",
+            "description": "List of GelbeSeiten search URLs to scrape.",
+            "editor": "requestListSources",
+            "prefill": [
+                { "url": "https://www.gelbeseiten.de/Suche/IT-Beratung/Berlin" }
+            ]
         },
         "maxLeads": {
             "title": "Maximum Leads",
@@ -32,5 +27,5 @@
             "editor": "proxy"
         }
     },
-    "required": ["keyword", "location"]
+    "required": ["startUrls"]
 }

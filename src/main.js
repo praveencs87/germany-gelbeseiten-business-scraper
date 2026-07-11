@@ -7,8 +7,7 @@ await Actor.init();
 try {
     const input = await Actor.getInput();
     const { 
-        keyword = 'Klempner', 
-        location = 'Berlin', 
+        startUrls = [],
         maxLeads = 100,
         proxyConfiguration 
     } = input || {};
@@ -19,12 +18,11 @@ try {
         apifyProxyCountry: 'DE'
     });
 
-    log.info(`Searching Das Oertliche (Germany) for "${keyword}" in "${location}"`);
+    log.info(`Searching Das Oertliche (Germany)...`);
     
     await Actor.charge({ eventName: 'apify-actor-start', count: 1 });
 
     let extractedCount = 0;
-    let isSearchSubmitted = false;
 
     const crawler = new PlaywrightCrawler({
         proxyConfiguration: proxyConfig,
@@ -41,23 +39,7 @@ try {
                 throw new Error('Blocked by WAF. Retrying with residential proxy...');
             }
 
-            if (request.url === 'https://www.dasoertliche.de/' && !isSearchSubmitted) {
-                log.info('Filling out the search form on dasoertliche.de homepage...');
-                // Accept cookies if present
-                await page.click('#cmpbntyestxt, .cmpboxbtn.cmpboxbtnyes').catch(() => {});
 
-                await page.waitForSelector('input[name="kw"], #kw', { timeout: 30000 });
-                await page.fill('input[name="kw"], #kw', keyword);
-                await page.fill('input[name="ci"], #ci', location);
-                
-                await Promise.all([
-                    page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 60000 }),
-                    page.click('button[type="submit"], input[type="submit"], .btn-search')
-                ]).catch(() => log.warning('Navigation wait timed out, continuing...'));
-                
-                log.info(`Redirected to search results: ${page.url()}`);
-                isSearchSubmitted = true;
-            }
 
             // Results page parsing
             await page.waitForSelector('.hit, .hitbox, .resultbox, .result-item, .box', { timeout: 30000 }).catch(() => log.warning('Timeout waiting for DOM.'));
@@ -79,7 +61,7 @@ try {
 
                 // Category
                 const catElement = await item.$('.category, .hit-category, .branchen');
-                const industry = catElement ? (await catElement.innerText()).trim() : keyword;
+                const industry = catElement ? (await catElement.innerText()).trim() : '';
 
                 // Phones
                 const phoneElement = await item.$('a[href^="tel:"], .phone, .hit-tel, .tel');
@@ -140,9 +122,14 @@ try {
         }
     });
 
-    await crawler.addRequests([{
-        url: 'https://www.dasoertliche.de/'
-    }]);
+    if (startUrls && startUrls.length > 0) {
+        for (const req of startUrls) {
+            await crawler.addRequests([{ url: typeof req === 'string' ? req : req.url }]);
+        }
+    } else {
+        log.warning('No startUrls provided. Using default.');
+        await crawler.addRequests([{ url: 'https://www.gelbeseiten.de/Suche/IT-Beratung/Berlin' }]);
+    }
 
     armKillSwitch(crawler);
     await crawler.run();
